@@ -25,7 +25,7 @@ cd algoritmo-humano-frontend
 
 npm install
 
-npm run start:dev
+npm run dev
 
 ```
 
