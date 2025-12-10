@@ -5,7 +5,7 @@ export interface Course {
   duration: string;
   imageUrl: string;
   status: boolean;
-  user?: {
+  user: {
     id: number;
     email: string;
     name: string;

@@ -1,32 +1,34 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useUserCourses, useDeleteCourse } from '@/hooks/useCourses';
-import { Course } from '@/types/courses';
-import Image from 'next/image';
-import { useState } from 'react';
+import Link from "next/link";
+import { useUserCourses, useDeleteCourse } from "@/hooks/useCourses";
+import { Course } from "@/types/courses";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function UserCoursesPage() {
   const { data, isLoading, error } = useUserCourses();
   const deleteCourseMutation = useDeleteCourse();
 
-  
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4; 
+  const itemsPerPage = 4;
 
-  
   const filteredCourses = data?.filter((course: Course) =>
     course.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  
-  const totalPages = filteredCourses ? Math.ceil(filteredCourses.length / itemsPerPage) : 1;
+  const totalPages = filteredCourses
+    ? Math.ceil(filteredCourses.length / itemsPerPage)
+    : 1;
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedCourses = filteredCourses?.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedCourses = filteredCourses?.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   const handleDelete = (id: number) => {
-    if (confirm('Tem certeza que deseja excluir este curso?')) {
+    if (confirm("Tem certeza que deseja excluir este curso?")) {
       deleteCourseMutation.mutate(id);
     }
   };
@@ -35,7 +37,9 @@ export default function UserCoursesPage() {
     return (
       <div className="flex justify-center items-center py-10">
         <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
-        <span className="ml-4 text-blue-600 font-medium">Carregando cursos...</span>
+        <span className="ml-4 text-blue-600 font-medium">
+          Carregando cursos...
+        </span>
       </div>
     );
   }
@@ -44,7 +48,10 @@ export default function UserCoursesPage() {
     return (
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
         <strong className="font-bold">Erro:</strong>
-        <span className="block sm:inline"> Não foi possível carregar seus cursos.</span>
+        <span className="block sm:inline">
+          {" "}
+          Não foi possível carregar seus cursos.
+        </span>
       </div>
     );
   }
@@ -58,7 +65,6 @@ export default function UserCoursesPage() {
         </Link>
       </div>
 
-      
       <div className="mb-6">
         <input
           type="text"
@@ -67,7 +73,7 @@ export default function UserCoursesPage() {
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
-            setCurrentPage(1); 
+            setCurrentPage(1);
           }}
         />
       </div>
@@ -90,6 +96,9 @@ export default function UserCoursesPage() {
             <h3 className="text-lg font-bold mb-2">{course.title}</h3>
             <p className="text-gray-700 mb-2">{course.description}</p>
             <small className="text-gray-500">Duração: {course.duration}h</small>
+            <p className="text-sm text-gray-600 mt-2">
+              <strong>Autor:</strong> {course.user.name} ({course.user.email})
+            </p>
 
             <div className="mt-3 flex gap-2">
               <Link
@@ -109,14 +118,13 @@ export default function UserCoursesPage() {
                 className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
                 disabled={deleteCourseMutation.isPending}
               >
-                {deleteCourseMutation.isPending ? 'Excluindo...' : 'Excluir'}
+                {deleteCourseMutation.isPending ? "Excluindo..." : "Excluir"}
               </button>
             </div>
           </div>
         ))}
       </div>
 
-      
       <div className="flex justify-center items-center mt-6 space-x-2">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
@@ -129,7 +137,9 @@ export default function UserCoursesPage() {
           Página {currentPage} de {totalPages}
         </span>
         <button
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
           disabled={currentPage === totalPages}
           className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
         >

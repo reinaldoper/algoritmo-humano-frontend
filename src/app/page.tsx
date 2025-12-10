@@ -78,6 +78,9 @@ export default function HomePage() {
               <h3 className="text-lg font-bold mb-2">{course.title}</h3>
               <p className="text-gray-700 mb-2">{course.description}</p>
               <small className="text-gray-500">Duração: {course.duration}h</small>
+              <p className="text-sm text-gray-600 mt-2">
+                <strong>Autor:</strong> {course.user.name} ({course.user.email})
+              </p>
             </div>
           ))}
         </div>
