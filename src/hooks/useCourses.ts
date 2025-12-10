@@ -1,14 +1,13 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import api from '@/lib/api';
-import { Course } from '@/types/courses';
-import { useMutation } from '@tanstack/react-query';
-
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import api from "@/lib/api";
+import { Course } from "@/types/courses";
+import { useMutation } from "@tanstack/react-query";
 
 export function usePublishedCourses() {
   return useQuery<Course[]>({
-    queryKey: ['publishedCourses'],
+    queryKey: ["publishedCourses"],
     queryFn: async () => {
-      const res = await api.get<Course[]>('/courses/published');
+      const res = await api.get<Course[]>("/courses/published");
       return res.data;
     },
   });
@@ -23,7 +22,7 @@ export function useCreateCourse() {
       imageUrl: string;
       status: boolean;
     }) => {
-      const res = await api.post<Course>('/courses', course);
+      const res = await api.post<Course>("/courses", course);
       return res.data;
     },
   });
@@ -31,9 +30,9 @@ export function useCreateCourse() {
 
 export function useUserCourses() {
   return useQuery<Course[]>({
-    queryKey: ['userCourses'],
+    queryKey: ["userCourses"],
     queryFn: async () => {
-      const res = await api.get<Course[]>('/courses/me');
+      const res = await api.get<Course[]>("/courses/me");
       return res.data;
     },
   });
@@ -42,7 +41,10 @@ export function useUserCourses() {
 export function useUpdateCourse() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (course: {
+    mutationFn: async ({
+      id,
+      ...data
+    }: {
       id: number;
       title?: string;
       description?: string;
@@ -50,12 +52,12 @@ export function useUpdateCourse() {
       imageUrl?: string;
       status?: boolean;
     }) => {
-      const res = await api.put<Course>(`/courses/${course.id}`, course);
+      const res = await api.patch<Course>(`/courses/${id}`, data);
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['userCourses'] });
-    }
+      queryClient.invalidateQueries({ queryKey: ["userCourses"] });
+    },
   });
 }
 
@@ -69,8 +71,8 @@ export function useChangeCourseStatus() {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['userCourses'] });
-    }
+      queryClient.invalidateQueries({ queryKey: ["userCourses"] });
+    },
   });
 }
 
@@ -83,18 +85,17 @@ export function useDeleteCourse() {
       return id;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['userCourses'] });
+      queryClient.invalidateQueries({ queryKey: ["userCourses"] });
     },
   });
 }
 
 export function useAllCourses() {
   return useQuery<Course[]>({
-    queryKey: ['allCourses'],
+    queryKey: ["allCourses"],
     queryFn: async () => {
-      const res = await api.get<Course[]>('/courses');
+      const res = await api.get<Course[]>("/courses");
       return res.data;
     },
   });
 }
-

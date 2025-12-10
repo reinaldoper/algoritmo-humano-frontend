@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useUserProfile, useLogout, useDeleteAccount } from '@/hooks/useUser';
 
+
 export default function UserProfilePage() {
   const { data, isLoading, error } = useUserProfile();
   const logoutMutation = useLogout();
@@ -29,6 +30,7 @@ export default function UserProfilePage() {
   return (
     <div className="p-6 max-w-md mx-auto bg-white rounded shadow">
       <h2 className="text-2xl font-semibold mb-4">Perfil do Usuário</h2>
+      <Link href="/" className="text-blue-600 underline hover:text-blue-800 mb-4 block">Voltar para catalogos.</Link>
       {data && (
         <div className="space-y-2 mb-6">
           <p><strong>ID:</strong> {data.id}</p>

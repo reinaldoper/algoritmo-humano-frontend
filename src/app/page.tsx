@@ -31,7 +31,7 @@ export default function HomePage() {
       <Navbar isAuthenticated={isAuthenticated} />
 
       <main className="p-6">
-        <h2 className="text-2xl font-semibold mb-4">Catálogo de Cursos</h2>
+        <h2 className="text-2xl font-semibold mb-4">Catálogo de Cursos publicados.</h2>
 
         <div className="mb-6">
           <input
@@ -68,7 +68,7 @@ export default function HomePage() {
             >
               {course.imageUrl && (
                 <Image
-                  src={`data:image/png;base64,${course.imageUrl}`}
+                  src={course.imageUrl}
                   alt={course.title}
                   width={400}
                   height={200}

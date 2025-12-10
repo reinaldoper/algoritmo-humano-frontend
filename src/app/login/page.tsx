@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useLogin } from '@/hooks/useAuth';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -20,6 +21,7 @@ export default function LoginPage() {
         className="bg-white p-6 rounded shadow-md w-80 space-y-4"
       >
         <h2 className="text-xl font-bold text-center">Login</h2>
+        <Link className="hover:underline text-blue-500" href="/register">Ainda não tem uma conta? Cadastre-se</Link>
 
         <input
           type="email"

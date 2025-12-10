@@ -1,15 +1,16 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useCreateCourse } from '@/hooks/useCourses';
-import Image from 'next/image';
+import { useState } from "react";
+import { useCreateCourse } from "@/hooks/useCourses";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function NewCoursePage() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [duration, setDuration] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [duration, setDuration] = useState("");
   const [status, setStatus] = useState(true);
-  const [imageBase64, setImageBase64] = useState<string>('');
+  const [imageBase64, setImageBase64] = useState<string>("");
 
   const createCourseMutation = useCreateCourse();
 
@@ -42,6 +43,7 @@ export default function NewCoursePage() {
         className="bg-white p-6 rounded shadow-md w-96 space-y-4"
       >
         <h2 className="text-xl font-bold text-center">Cadastrar Curso</h2>
+        <Link className="hover:underline text-blue-500" href="/">Voltar para o Catálogo</Link>
 
         <input
           type="text"
@@ -77,6 +79,8 @@ export default function NewCoursePage() {
           <Image
             src={imageBase64}
             alt="Preview"
+            width={400} 
+            height={200}
             className="w-full h-40 object-cover rounded mb-2"
           />
         )}
@@ -95,7 +99,7 @@ export default function NewCoursePage() {
           className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
           disabled={createCourseMutation.isPending}
         >
-          {createCourseMutation.isPending ? 'Salvando...' : 'Cadastrar'}
+          {createCourseMutation.isPending ? "Salvando..." : "Cadastrar"}
         </button>
 
         {createCourseMutation.isError && (
@@ -103,7 +107,9 @@ export default function NewCoursePage() {
         )}
 
         {createCourseMutation.isSuccess && (
-          <p className="text-green-500 text-sm">Curso cadastrado com sucesso!</p>
+          <p className="text-green-500 text-sm">
+            Curso cadastrado com sucesso!
+          </p>
         )}
       </form>
     </div>

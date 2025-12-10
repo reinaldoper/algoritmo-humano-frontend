@@ -4,6 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useUpdateCourse } from '@/hooks/useCourses';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function EditCourseByIdPage() {
   const params = useParams();
@@ -47,6 +48,7 @@ export default function EditCourseByIdPage() {
         className="bg-white p-6 rounded shadow-md w-96 space-y-4"
       >
         <h2 className="text-xl font-bold text-center">Editar Curso #{courseId}</h2>
+        <Link className="hover:underline text-blue-500" href="/">Voltar para o Catálogo</Link>
 
         <input
           type="text"
@@ -82,6 +84,8 @@ export default function EditCourseByIdPage() {
           <Image
             src={imageBase64}
             alt="Preview"
+            width={400}
+            height={200}
             className="w-full h-40 object-cover rounded mb-2"
           />
         )}

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useUpdateUser } from '@/hooks/useUser';
+import Link from 'next/link';
 
 export default function EditUserPage() {
   const [name, setName] = useState('');
@@ -22,6 +23,7 @@ export default function EditUserPage() {
         className="bg-white p-6 rounded shadow-md w-96 space-y-4"
       >
         <h2 className="text-xl font-bold text-center">Editar Usuário</h2>
+        <Link className="hover:underline text-blue-500" href="/">Voltar para o Catálogo</Link>
 
         <input
           type="text"

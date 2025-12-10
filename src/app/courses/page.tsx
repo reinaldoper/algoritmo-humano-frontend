@@ -86,7 +86,7 @@ export default function UserCoursesPage() {
           >
             {course.imageUrl && (
               <Image
-                src={`data:image/png;base64,${course.imageUrl}`}
+                src={course.imageUrl}
                 alt={course.title}
                 width={400}
                 height={200}
