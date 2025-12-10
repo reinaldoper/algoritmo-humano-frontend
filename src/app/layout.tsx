@@ -1,0 +1,22 @@
+import type { Metadata } from "next";
+import { Providers } from "@/provider/providers";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Human Algorithm App",
+  description: "Application frontend does with NextJs and TailwindCSS",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="pt-BR">
+      <body suppressHydrationWarning={true}>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
+}
