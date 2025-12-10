@@ -88,3 +88,13 @@ export function useDeleteCourse() {
   });
 }
 
+export function useAllCourses() {
+  return useQuery<Course[]>({
+    queryKey: ['allCourses'],
+    queryFn: async () => {
+      const res = await api.get<Course[]>('/courses');
+      return res.data;
+    },
+  });
+}
+
