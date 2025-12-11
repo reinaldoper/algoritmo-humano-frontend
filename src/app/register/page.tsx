@@ -23,7 +23,9 @@ export default function RegisterPage() {
       >
         <h2 className="text-xl font-bold text-center">Cadastro</h2>
 
-        <input
+        <input  
+          min={5}
+          required
           type="text"
           placeholder="Nome"
           className="w-full border p-2 rounded"
@@ -32,6 +34,7 @@ export default function RegisterPage() {
         />
 
         <input
+          required
           type="email"
           placeholder="Email"
           className="w-full border p-2 rounded"
@@ -39,7 +42,9 @@ export default function RegisterPage() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <input
+        <input  
+          min={6}
+          required
           type="password"
           placeholder="Senha"
           className="w-full border p-2 rounded"

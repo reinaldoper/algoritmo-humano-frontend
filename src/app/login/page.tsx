@@ -24,6 +24,7 @@ export default function LoginPage() {
         <Link className="hover:underline text-blue-500" href="/register">Ainda não tem uma conta? Cadastre-se</Link>
 
         <input
+          required
           type="email"
           placeholder="Email"
           className="w-full border p-2 rounded"
@@ -32,6 +33,7 @@ export default function LoginPage() {
         />
 
         <input
+          required
           type="password"
           placeholder="Senha"
           className="w-full border p-2 rounded"

@@ -25,7 +25,9 @@ export default function EditUserPage() {
         <h2 className="text-xl font-bold text-center">Editar Usuário</h2>
         <Link className="hover:underline text-blue-500" href="/">Voltar para o Catálogo</Link>
 
-        <input
+        <input                                      
+          required
+          min={5}
           type="text"
           placeholder="Nome"
           className="w-full border p-2 rounded"
@@ -33,7 +35,8 @@ export default function EditUserPage() {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <input
+        <input  
+          required
           type="email"
           placeholder="Email"
           className="w-full border p-2 rounded"
@@ -41,7 +44,9 @@ export default function EditUserPage() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <input
+        <input  
+          required
+          min={6}
           type="password"
           placeholder="Nova senha"
           className="w-full border p-2 rounded"

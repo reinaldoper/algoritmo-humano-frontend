@@ -46,6 +46,8 @@ export default function NewCoursePage() {
         <Link className="hover:underline text-blue-500" href="/">Voltar para o Catálogo</Link>
 
         <input
+          required
+          min={6}
           type="text"
           placeholder="Título"
           className="w-full border p-2 rounded"
@@ -53,14 +55,17 @@ export default function NewCoursePage() {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <textarea
+        <textarea 
+          required
+          rows={4}
           placeholder="Descrição"
           className="w-full border p-2 rounded"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <input
+        <input  
+          required
           type="text"
           placeholder="Duração (horas)"
           className="w-full border p-2 rounded"
@@ -68,7 +73,8 @@ export default function NewCoursePage() {
           onChange={(e) => setDuration(e.target.value)}
         />
 
-        <input
+        <input  
+          required
           type="file"
           accept="image/*"
           className="w-full"
