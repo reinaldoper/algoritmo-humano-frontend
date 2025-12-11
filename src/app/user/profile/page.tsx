@@ -33,7 +33,6 @@ export default function UserProfilePage() {
       <Link href="/" className="text-blue-600 underline hover:text-blue-800 mb-4 block">Voltar para catalogos.</Link>
       {data && (
         <div className="space-y-2 mb-6">
-          <p><strong>ID:</strong> {data.id}</p>
           <p><strong>Nome:</strong> {data.name}</p>
           <p><strong>Email:</strong> {data.email}</p>
           <p><strong>Criado em:</strong> {new Date(data.createdAt).toLocaleDateString('pt-BR')}</p>

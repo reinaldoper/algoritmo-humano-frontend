@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Human Algorithm App",
   description: "Application frontend does with NextJs and TailwindCSS",
+  icons: {
+    icon: "/avatar.jpeg",
+  },
 };
 
 export default function RootLayout({
