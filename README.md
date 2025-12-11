@@ -48,3 +48,4 @@ npm run test
 ```bash
  http://localhost:3000
 ```
+[![Netlify Status](https://api.netlify.com/api/v1/badges/48067954-3a45-48e3-b553-a1da914fbc8b/deploy-status)](https://app.netlify.com/projects/algoritmo-humano/deploys)
