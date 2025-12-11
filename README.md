@@ -28,12 +28,21 @@ npm install
 npm run dev
 
 ```
+---
 
 - Criar um arquivo .env na raiz:
 ```bash
 NEXT_PUBLIC_BASE_URL=http://localhost:3001/api
 ```
 ---
+
+### Testar a aplicação:
+```bash
+npm run test
+```
+
+---
+
 
 ### A aplicação estara rodando em:
 ```bash
