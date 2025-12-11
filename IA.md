@@ -111,3 +111,33 @@ Mostrar esse catálogo já na página inicial valoriza o requisito.
 A navbar com login/cadastro dá clareza e mantém a experiência fluida.
 
 Depois de logado, o usuário vê as opções extras (CRUD de cursos).
+
+---------------------
+me ajude a resolver este erro: > algoritmo-humano-frontend@0.1.0 test > jest ● Validation Error: Test environment jest-environment-jsdom cannot be found. Make sure the testEnvironment configuration option points to an existing node module. Configuration Documentation: https://jestjs.io/docs/configuration As of Jest 28 "jest-environment-jsdom" is no longer shipped by default, make sure to install it separately.
+Esse erro acontece porque a partir do Jest 28 o ambiente de testes jest-environment-jsdom não vem mais instalado por padrão. Como você configurou testEnvironment: 'jsdom', o Jest está procurando esse pacote e não encontra.
+
+✅ Como corrigir
+Instale o pacote separado:
+
+bash
+npm install --save-dev jest-environment-jsdom
+ou com yarn:
+
+bash
+yarn add -D jest-environment-jsdom
+Confirme no seu jest.config.js:
+
+js
+/** @type {import('jest').Config} */
+const config = {
+  testEnvironment: 'jsdom', // agora funciona porque o pacote está instalado
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+};
+
+module.exports = config;
