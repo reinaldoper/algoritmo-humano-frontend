@@ -64,7 +64,7 @@ export default function HomePage() {
           {paginatedCourses?.map((course: Course) => (
             <div
               key={course.id}
-              className="border p-4 rounded shadow hover:shadow-lg transition-shadow duration-200"
+              className="p-4 rounded shadow hover:shadow-lg transition-shadow duration-200 bg-amber-100"
             >
               {course.imageUrl && (
                 <Image
@@ -72,7 +72,7 @@ export default function HomePage() {
                   alt={course.title}
                   width={400}
                   height={200}
-                  className="w-full h-40 object-cover rounded mb-3"
+                  className="w-full h-40 object-cover rounded mb-3 hover:scale-105 transition-transform duration-300"
                 />
               )}
               <h3 className="text-lg font-bold mb-2">{course.title}</h3>
