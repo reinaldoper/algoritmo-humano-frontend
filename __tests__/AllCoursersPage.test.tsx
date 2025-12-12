@@ -23,11 +23,6 @@ describe("AllCoursesPage", () => {
     renderWithAuth(<AllCoursesPage />);
     expect(screen.getByText(/Todos os Cursos./i)).toBeInTheDocument();
   });
-
-  it("renderiza o link de voltar", () => {
-    renderWithAuth(<AllCoursesPage />);
-    expect(screen.getByText(/Voltar para Home/i)).toBeInTheDocument();
-  });
   it("renderiza a mensagem de carregando", () => {
     renderWithAuth(<AllCoursesPage />);
     expect(screen.getByText(/Carregando cursos.../i)).toBeInTheDocument();

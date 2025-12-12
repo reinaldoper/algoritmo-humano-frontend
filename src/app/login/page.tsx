@@ -25,6 +25,7 @@ export default function LoginPage() {
 
         <input
           required
+          minLength={5}
           type="email"
           placeholder="Email"
           className="w-full border p-2 rounded"
@@ -34,6 +35,7 @@ export default function LoginPage() {
 
         <input
           required
+          minLength={6}
           type="password"
           placeholder="Senha"
           className="w-full border p-2 rounded"

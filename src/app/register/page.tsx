@@ -22,9 +22,10 @@ export default function RegisterPage() {
         className="bg-white p-6 rounded shadow-md w-80 space-y-4"
       >
         <h2 className="text-xl font-bold text-center">Cadastro</h2>
+        <Link className="hover:underline text-blue-500" href="/">Voltar para catalogos.</Link>
 
         <input  
-          min={5}
+          minLength={5}
           required
           type="text"
           placeholder="Nome"
@@ -35,6 +36,7 @@ export default function RegisterPage() {
 
         <input
           required
+          minLength={5}
           type="email"
           placeholder="Email"
           className="w-full border p-2 rounded"
@@ -43,7 +45,7 @@ export default function RegisterPage() {
         />
 
         <input  
-          min={6}
+          minLength={6}
           required
           type="password"
           placeholder="Senha"

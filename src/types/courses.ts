@@ -11,3 +11,13 @@ export interface Course {
     name: string;
   };
 }
+
+export interface CourseListProps {
+  data: Course[];
+  isLoading: boolean;
+  error: unknown;
+}
+
+export interface CourseCardProps {
+  course: Course;
+}
