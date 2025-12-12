@@ -47,7 +47,7 @@ export default function NewCoursePage() {
 
         <input
           required
-          min={6}
+          minLength={6}
           type="text"
           placeholder="Título"
           className="w-full border p-2 rounded"
@@ -57,7 +57,7 @@ export default function NewCoursePage() {
 
         <textarea 
           required
-          rows={4}
+          minLength={10}
           placeholder="Descrição"
           className="w-full border p-2 rounded"
           value={description}
