@@ -21,3 +21,9 @@ export interface CourseListProps {
 export interface CourseCardProps {
   course: Course;
 }
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
