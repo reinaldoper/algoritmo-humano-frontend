@@ -1,20 +1,42 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useUpdateUser } from '@/hooks/useUser';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { useUpdateUser } from "@/hooks/useUser";
+import { useUserProfile } from "@/hooks/useUser";
+import Link from "next/link";
 
 export default function EditUserPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const updateUserMutation = useUpdateUser();
+  const { data: user, isLoading } = useUserProfile();
+  useEffect(() => {
+    const initializeForm = () => {
+      if (user) {
+        setName(user.name);
+        setEmail(user.email);
+      }
+    };
+    if (!isLoading) {
+      initializeForm();
+    }
+  }, [user, isLoading]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateUserMutation.mutate({ name, email, password });
   };
+
+  if (isLoading) {
+    <div className="flex justify-center items-center py-10">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+      <span className="ml-4 text-blue-600 font-medium">
+        Carregando dados do usuário......
+      </span>
+    </div>;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
@@ -23,9 +45,11 @@ export default function EditUserPage() {
         className="bg-white p-6 rounded shadow-md w-96 space-y-4"
       >
         <h2 className="text-xl font-bold text-center">Editar Usuário</h2>
-        <Link className="hover:underline text-blue-500" href="/">Voltar para o Catálogo</Link>
+        <Link className="hover:underline text-blue-500" href="/">
+          Voltar para o Catálogo
+        </Link>
 
-        <input                                      
+        <input
           required
           min={5}
           type="text"
@@ -35,7 +59,7 @@ export default function EditUserPage() {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <input  
+        <input
           required
           type="email"
           placeholder="Email"
@@ -44,7 +68,7 @@ export default function EditUserPage() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <input  
+        <input
           required
           min={6}
           type="password"
@@ -59,7 +83,7 @@ export default function EditUserPage() {
           className="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700"
           disabled={updateUserMutation.isPending}
         >
-          {updateUserMutation.isPending ? 'Salvando...' : 'Atualizar'}
+          {updateUserMutation.isPending ? "Salvando..." : "Atualizar"}
         </button>
 
         {updateUserMutation.isError && (
@@ -67,7 +91,9 @@ export default function EditUserPage() {
         )}
 
         {updateUserMutation.isSuccess && (
-          <p className="text-green-500 text-sm">Usuário atualizado com sucesso!</p>
+          <p className="text-green-500 text-sm">
+            Usuário atualizado com sucesso!
+          </p>
         )}
       </form>
     </div>
